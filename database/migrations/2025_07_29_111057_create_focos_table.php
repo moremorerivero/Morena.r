@@ -23,5 +23,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('focos');
+        Schema::create('focos', function (Blueprint $table) {
+    $table->id();
+    $table->string('codigo');
+    $table->string('tipo');
+    $table->string('intensidad');
+    $table->string('ubicacion');
+    $table->foreignId('aula_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+});
+
     }
 };

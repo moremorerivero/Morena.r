@@ -23,5 +23,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('aulas');
+        Schema::create('aulas', function (Blueprint $table) {
+    $table->id();
+    $table->string('nombre');
+    $table->integer('capacidad');
+    $table->string('ubicacion');
+    $table->timestamps();
+});
+
     }
 };

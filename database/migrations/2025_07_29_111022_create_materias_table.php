@@ -23,5 +23,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('materias');
+        Schema::create('materias', function (Blueprint $table) {
+    $table->id();
+    $table->string('nombre');
+    $table->string('camara');
+    $table->string('tipo_cursada');
+    $table->string('aula_recomendada')->nullable();
+    $table->year('anio');
+    $table->foreignId('docente_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+});
+
     }
 };

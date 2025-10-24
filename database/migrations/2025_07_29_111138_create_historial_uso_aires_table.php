@@ -22,6 +22,14 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historial_uso_aires');
+        Schema::dropIfExists('historial_uso_aires');Schema::create('historial_uso_aires', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('aire_acondicionado_id')->constrained()->onDelete('cascade');
+    $table->foreignId('horario_id')->constrained();
+    $table->string('temperatura');
+    $table->date('fecha');
+    $table->timestamps();
+});
+
     }
 };

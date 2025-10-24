@@ -23,5 +23,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('docentes');
+        Schema::create('docentes', function (Blueprint $table) {
+    $table->id();
+    $table->string('nombre');
+    $table->string('especialidad');
+    $table->string('dni')->unique();
+    $table->timestamps();
+});
+
     }
 };

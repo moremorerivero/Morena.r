@@ -23,5 +23,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('cortinas');
+        Schema::create('cortinas', function (Blueprint $table) {
+    $table->id();
+    $table->string('identificacion');
+    $table->string('ubicacion');
+    $table->string('estado');
+    $table->foreignId('aula_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+});
+
     }
 };

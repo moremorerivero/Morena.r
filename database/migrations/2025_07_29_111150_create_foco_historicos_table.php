@@ -23,5 +23,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('foco_historicos');
+        Schema::create('foco_historicos', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('foco_id')->constrained()->onDelete('cascade');
+    $table->date('fecha');
+    $table->foreignId('horario_id')->constrained();
+    $table->string('estado');
+    $table->timestamps();
+});
+
     }
 };

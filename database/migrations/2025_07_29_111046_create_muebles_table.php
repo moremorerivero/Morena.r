@@ -23,5 +23,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('muebles');
+        Schema::create('muebles', function (Blueprint $table) {
+    $table->id();
+    $table->string('nombre');
+    $table->string('estado');
+    $table->string('orientacion')->nullable();
+    $table->boolean('es_proyector')->default(false);
+    $table->foreignId('aula_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+});
+
     }
 };

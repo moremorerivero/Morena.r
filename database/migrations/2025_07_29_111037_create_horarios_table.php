@@ -23,5 +23,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('horarios');
+        Schema::create('horarios', function (Blueprint $table) {
+    $table->id();
+    $table->string('turno');
+    $table->string('periodo');
+    $table->string('dia');
+    $table->time('hora_inicio');
+    $table->time('hora_fin');
+    $table->boolean('necesita_reserva')->default(true);
+    $table->timestamps();
+});
+
     }
 };
