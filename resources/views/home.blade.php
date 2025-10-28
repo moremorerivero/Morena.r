@@ -54,6 +54,27 @@
                     <h3 class="text-xl font-semibold mb-2">Horarios</h3>
                     <p class="text-center opacity-80">Organización temporal</p>
                 </div>
+
+                <!-- Aires Acondicionadores -->
+                 <div class="card-hover bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 min-w-[280px] flex flex-col items-center text-white cursor-pointer">
+                    <i class="fas fa-clock text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Aire Acondicionado</h3>
+                    <p class="text-center opacity-80">Historial de uso y reparación</p>
+                </div>
+
+                <!-- Cantidad de focos -->
+                 <div class="card-hover bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 min-w-[280px] flex flex-col items-center text-white cursor-pointer">
+                   <i class="fas fa-temperature-low"></i>    <!-- Temperatura -->
+                    <h3 class="text-xl font-semibold mb-2">Focos</h3>
+                    <p class="text-center opacity-80">Cantidad y uso de focos</p>
+                </div>
+
+                 <!-- Teriatas lol -->
+                 <div class="card-hover bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 min-w-[280px] flex flex-col items-center text-white cursor-pointer">
+                    <i class="fas fa-clock text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Tareas</h3>
+                    <p class="text-center opacity-80">Entrega de tareas</p>
+                </div>
             </div>
             
             <button onclick="scrollHorizontal('modules-container', 1)" 

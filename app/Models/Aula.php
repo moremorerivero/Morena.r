@@ -11,9 +11,13 @@ class Aula extends Model
 
     protected $fillable = [
         'nombre',
-        'capacidad',
-        'ubicacion',
-        'equipamiento',
-        'estado'
+        'descripcion',
+        'capacidad', 
+        'focos',
+        'cortinas',
+        'sillas', 
+        'mesas',
+        'aire_acondicionado',
+        'disponible'
     ];
 }
