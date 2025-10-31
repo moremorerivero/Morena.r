@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-5">
+<div class="container py-5">
     <h1 class="section-title text-center mb-5">Nuestras Aulas</h1>
 
     <div class="row">

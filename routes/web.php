@@ -1,47 +1,60 @@
-<<?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\TareaController;
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\AireAcondicionadoController;
+use App\Http\Controllers\FocoController;
+use App\Http\Controllers\CortinaController;
 
+// Página de inicio (pública)
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Auth Routes
+// Rutas de autenticación
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Aulas Routes (COMPLETAS)
+// Rutas públicas
 Route::get('/aulas', [AulaController::class, 'index'])->name('aulas.index');
-Route::get('/aulas/create', [AulaController::class, 'create'])->name('aulas.create');
-Route::post('/aulas', [AulaController::class, 'store'])->name('aulas.store');
 Route::get('/aulas/{id}', [AulaController::class, 'show'])->name('aulas.show');
-Route::get('/aulas/{id}/edit', [AulaController::class, 'edit'])->name('aulas.edit');
-Route::put('/aulas/{id}', [AulaController::class, 'update'])->name('aulas.update');
-Route::delete('/aulas/{id}', [AulaController::class, 'destroy'])->name('aulas.destroy');
 
-// Otros módulos (vistas estáticas por ahora)
-Route::get('/docentes', function () { 
-    return view('modules.docentes'); 
-})->name('docentes.index');
+// Grupo de rutas protegidas
+Route::middleware(['auth'])->group(function () {
+    // Aulas (completas)
+    Route::resource('aulas', AulaController::class)->except(['index', 'show']);
+    
+    // Reservas
+    Route::resource('reservas', ReservaController::class);
+    
+    // Tareas
+    Route::resource('tareas', TareaController::class);
+    
+    // Académico
+    Route::resource('materias', MateriaController::class);
+    Route::resource('horarios', HorarioController::class);
+    
+    // Usuarios
+    Route::resource('alumnos', AlumnoController::class);
+    Route::resource('docentes', DocenteController::class);
+    
+    // Equipamiento
+    Route::resource('aire', AireAcondicionadoController::class);
+    Route::resource('focos', FocoController::class);
+    Route::resource('cortinas', CortinaController::class);
+});
 
-Route::get('/estudiantes', function () { 
-    return view('modules.estudiantes'); 
-})->name('estudiantes.index');
-
-Route::get('/materias', function () { 
-    return view('modules.materias'); 
-})->name('materias.index');
-
-Route::get('/horarios', function () { 
-    return view('modules.horarios'); 
-})->name('horarios.index');
-
-// Dashboard
+// Redirección después del login
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('home');
 })->middleware('auth')->name('dashboard');
