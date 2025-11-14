@@ -55,8 +55,8 @@
                         </div>
                         <h5 class="card-title">Aulas</h5>
                         <p class="card-text text-muted">Gestión de espacios educativos</p>
-                        <a href="{{ route('aulas.index') }}" class="btn btn-primary-custom btn-sm">
-                            Acceder
+                        <a href="{{ url('/aulas-modulos') }}" class="btn btn-primary-custom btn-sm">
+                            Ver Tipos de Aulas
                         </a>
                     </div>
                 </div>
