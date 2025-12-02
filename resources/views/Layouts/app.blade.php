@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(-45deg, #745174ff, #e73c7e, #a1056dff, #2f1d31ff, #9d4edd);
+            background: linear-gradient(-45deg, #1b2555ff, rgba(247, 202, 244, 1), #581466ff, #2f1d31ff, #9d4edd);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             min-height: 100vh;
@@ -139,6 +139,7 @@
         .module-card:nth-child(3) { animation-delay: 0.6s; }
         .module-card:nth-child(4) { animation-delay: 0.8s; }
         .module-card:nth-child(5) { animation-delay: 1.0s; }
+        .module-card:nth-child(6) { animation-delay: 1.2s; }
         
         @keyframes slideIn {
             to {
@@ -260,7 +261,7 @@
         }
 
         /* ESTILOS PARA LA GESTIÓN DE AULAS */
-        .classrooms-section, .schedule-section, .teachers-section, .subjects-section {
+        .classrooms-section, .schedule-section, .teachers-section, .subjects-section, .ac-section, .lights-section {
             width: 100%;
             margin: 30px 0;
             display: none;
@@ -633,6 +634,159 @@
             gap: 10px;
             flex-wrap: wrap;
         }
+
+        /* ESTILOS PARA AIRES ACONDICIONADOS */
+        .ac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .ac-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .ac-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ac-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .ac-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background-color: #2ecc71;
+            box-shadow: 0 0 10px #2ecc71;
+        }
+
+        .status-maintenance {
+            background-color: #e74c3c;
+            box-shadow: 0 0 10px #e74c3c;
+        }
+
+        .ac-info {
+            margin-bottom: 20px;
+        }
+
+        .ac-info p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ESTILOS PARA LUCES */
+        .lights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .light-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .light-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .light-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .light-controls {
+            margin: 20px 0;
+        }
+
+        .intensity-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .intensity-value {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .connection-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .connected {
+            background-color: #2ecc71;
+        }
+
+        .disconnected {
+            background-color: #e74c3c;
+        }
+
+        /* Estilos para el historial */
+        .history-section {
+            margin-top: 30px;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .history-item h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
         
         @media (max-width: 768px) {
             h1 {
@@ -643,7 +797,7 @@
                 padding: 25px;
             }
             
-            .modules-grid, .devices-grid, .classrooms-grid, .trimesters-grid, .teachers-grid, .subjects-grid {
+            .modules-grid, .devices-grid, .classrooms-grid, .trimesters-grid, .teachers-grid, .subjects-grid, .ac-grid, .lights-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -705,10 +859,17 @@
                         <h3>Docentes</h3>
                         <p>Administración del personal</p>
                     </div>
-                    <div class="module-card" onclick="openModule('estudiantes')">
-                        <div class="module-icon"><i class="fas fa-user-graduate"></i></div>
-                        <h3>Estudiantes</h3>
-                        <p>Gestión estudiantil</p>
+                    <!-- Cambiamos Estudiantes por Aires Acondicionados -->
+                    <div class="module-card" onclick="openModule('aires')">
+                        <div class="module-icon"><i class="fas fa-wind"></i></div>
+                        <h3>Aires Acondicionados</h3>
+                        <p>Control y monitoreo climático</p>
+                    </div>
+                    <!-- Agregamos el nuevo módulo de Luces -->
+                    <div class="module-card" onclick="openModule('luces')">
+                        <div class="module-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Luces</h3>
+                        <p>Control de iluminación inteligente</p>
                     </div>
                     <div class="module-card" onclick="openModule('materias')">
                         <div class="module-icon"><i class="fas fa-book-open"></i></div>
@@ -734,14 +895,14 @@
                         <p>Optimizan el consumo eléctrico en las aulas</p>
                     </div>
                     <div class="device-card">
-                        <div class="device-icon"><i class="fas fa-video"></i></div>
-                        <h3>Sistemas de Seguridad</h3>
-                        <p>Vigilancia y control de acceso automatizado</p>
+                        <div class="device-icon"><i class="fas fa-wind"></i></div>
+                        <h3>Sistemas Climáticos</h3>
+                        <p>Control automático de temperatura y humedad</p>
                     </div>
                     <div class="device-card">
-                        <div class="device-icon"><i class="fas fa-microphone-alt"></i></div>
-                        <h3>Equipos Audiovisuales</h3>
-                        <p>Tecnología para experiencias educativas inmersivas</p>
+                        <div class="device-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Iluminación Inteligente</h3>
+                        <p>Ajuste automático de intensidad lumínica</p>
                     </div>
                 </div>
             </section>
@@ -821,6 +982,63 @@
             
             <div class="teachers-grid" id="teachers-container">
                 <!-- Los docentes se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Sección de Aires Acondicionados (nueva) -->
+        <section class="ac-section" id="ac-section">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            
+            <h2>Gestión de Aires Acondicionados</h2>
+            <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
+                Monitoreo y control de sistemas de climatización
+            </p>
+
+            <div class="ac-grid" id="ac-container">
+                <!-- Los aires acondicionados se cargarán aquí dinámicamente -->
+            </div>
+
+            <div class="history-section">
+                <h3>Historial de Uso</h3>
+                <div id="ac-history-container">
+                    <!-- El historial se cargará aquí dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Luces (nueva) -->
+        <section class="lights-section" id="lights-section">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            
+            <h2>Control de Iluminación</h2>
+            <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
+                Regulación de intensidad lumínica por aula
+            </p>
+
+            <div class="lights-grid" id="lights-container">
+                <!-- Los controles de luces se cargarán aquí dinámicamente -->
+            </div>
+
+            <div class="history-section">
+                <h3>Configuración ESP32</h3>
+                <div class="light-card">
+                    <h4>Instrucciones de Conexión</h4>
+                    <div class="ac-info">
+                        <p><strong>Pinout ESP32 para control de luces:</strong></p>
+                        <p>• GPIO 2: Salida PWM para control de intensidad</p>
+                        <p>• GPIO 4: Sensor de luminosidad (opcional)</p>
+                        <p>• 3.3V: Alimentación para módulo de luces</p>
+                        <p>• GND: Tierra común</p>
+                    </div>
+                    <div class="connection-status">
+                        <div class="connection-dot connected"></div>
+                        <span>Sistema de control listo</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1271,15 +1489,193 @@
             }
         ];
 
+        // Datos de ejemplo para los aires acondicionados
+        const airConditioners = [
+            {
+                id: 1,
+                classroom: "MAKER",
+                status: "online",
+                hoursUsed: 120,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-15", hours: 4, teacher: "María González", action: "Encendido" },
+                    { date: "2023-03-16", hours: 6, teacher: "Carlos Rodríguez", action: "Encendido" },
+                    { date: "2023-03-20", hours: 8, teacher: "Ana Martínez", action: "Encendido" }
+                ]
+            },
+            {
+                id: 2,
+                classroom: "INFORMATICA",
+                status: "online",
+                hoursUsed: 95,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-15", hours: 5, teacher: "Ana Martínez", action: "Encendido" },
+                    { date: "2023-03-18", hours: 7, teacher: "Carlos Rodríguez", action: "Encendido" }
+                ]
+            },
+            {
+                id: 3,
+                classroom: "ARTISTICA",
+                status: "maintenance",
+                hoursUsed: 200,
+                maintenance: true,
+                history: [
+                    { date: "2023-03-10", hours: 8, teacher: "María González", action: "Encendido" },
+                    { date: "2023-03-11", hours: 7, teacher: "Carlos Rodríguez", action: "Encendido" },
+                    { date: "2023-03-12", hours: 6, teacher: "Ana Martínez", action: "Encendido" },
+                    { date: "2023-03-25", hours: 0, teacher: "Sistema", action: "Mantenimiento requerido" }
+                ]
+            },
+            {
+                id: 4,
+                classroom: "LENGUA EXTRANJERA",
+                status: "online",
+                hoursUsed: 85,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-14", hours: 5, teacher: "Carlos Rodríguez", action: "Encendido" },
+                    { date: "2023-03-19", hours: 6, teacher: "Ana Martínez", action: "Encendido" }
+                ]
+            },
+            {
+                id: 5,
+                classroom: "EXACTAS",
+                status: "online",
+                hoursUsed: 110,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-13", hours: 7, teacher: "María González", action: "Encendido" },
+                    { date: "2023-03-17", hours: 5, teacher: "Ana Martínez", action: "Encendido" }
+                ]
+            },
+            {
+                id: 6,
+                classroom: "LABORATORIO",
+                status: "online",
+                hoursUsed: 150,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-12", hours: 8, teacher: "Carlos Rodríguez", action: "Encendido" },
+                    { date: "2023-03-16", hours: 6, teacher: "María González", action: "Encendido" }
+                ]
+            },
+            {
+                id: 7,
+                classroom: "INVERNADERO",
+                status: "maintenance",
+                hoursUsed: 180,
+                maintenance: true,
+                history: [
+                    { date: "2023-03-11", hours: 7, teacher: "Ana Martínez", action: "Encendido" },
+                    { date: "2023-03-24", hours: 0, teacher: "Sistema", action: "Mantenimiento programado" }
+                ]
+            },
+            {
+                id: 8,
+                classroom: "SOCIALES",
+                status: "online",
+                hoursUsed: 75,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-15", hours: 4, teacher: "Carlos Rodríguez", action: "Encendido" },
+                    { date: "2023-03-21", hours: 5, teacher: "María González", action: "Encendido" }
+                ]
+            },
+            {
+                id: 9,
+                classroom: "GYM",
+                status: "online",
+                hoursUsed: 130,
+                maintenance: false,
+                history: [
+                    { date: "2023-03-14", hours: 6, teacher: "Ana Martínez", action: "Encendido" },
+                    { date: "2023-03-22", hours: 7, teacher: "Carlos Rodríguez", action: "Encendido" }
+                ]
+            }
+        ];
+
+        // Datos de ejemplo para las luces
+        const lights = [
+            {
+                id: 1,
+                classroom: "MAKER",
+                intensity: 75,
+                connected: true,
+                automatic: true
+            },
+            {
+                id: 2,
+                classroom: "INFORMATICA",
+                intensity: 60,
+                connected: true,
+                automatic: false
+            },
+            {
+                id: 3,
+                classroom: "ARTISTICA",
+                intensity: 85,
+                connected: true,
+                automatic: true
+            },
+            {
+                id: 4,
+                classroom: "LENGUA EXTRANJERA",
+                intensity: 70,
+                connected: true,
+                automatic: false
+            },
+            {
+                id: 5,
+                classroom: "EXACTAS",
+                intensity: 65,
+                connected: true,
+                automatic: true
+            },
+            {
+                id: 6,
+                classroom: "LABORATORIO",
+                intensity: 80,
+                connected: true,
+                automatic: false
+            },
+            {
+                id: 7,
+                classroom: "INVERNADERO",
+                intensity: 90,
+                connected: false,
+                automatic: true
+            },
+            {
+                id: 8,
+                classroom: "SOCIALES",
+                intensity: 55,
+                connected: true,
+                automatic: true
+            },
+            {
+                id: 9,
+                classroom: "GYM",
+                intensity: 95,
+                connected: true,
+                automatic: false
+            }
+        ];
+
         // Elementos del DOM
         const welcomeSection = document.getElementById('welcome-section');
         const classroomsSection = document.getElementById('classrooms-section');
         const scheduleSection = document.getElementById('schedule-section');
         const teachersSection = document.getElementById('teachers-section');
         const subjectsSection = document.getElementById('subjects-section');
+        const acSection = document.getElementById('ac-section');
+        const lightsSection = document.getElementById('lights-section');
         const classroomsContainer = document.getElementById('classrooms-container');
         const teachersContainer = document.getElementById('teachers-container');
         const subjectsContainer = document.getElementById('subjects-container');
+        const acContainer = document.getElementById('ac-container');
+        const lightsContainer = document.getElementById('lights-container');
+        const acHistoryContainer = document.getElementById('ac-history-container');
         const trimestersContainer = document.getElementById('trimesters-container');
         const scheduleContainer = document.getElementById('schedule-container');
         const daySelector = document.getElementById('day-selector');
@@ -1300,7 +1696,7 @@
         let currentTrimester = 1;
         let currentDay = "Lunes";
 
-        // Función para abrir módulos
+        // Función para abrir módulos (actualizada)
         function openModule(moduleName) {
             // Mostrar notificación
             notification.textContent = `Abriendo módulo: ${moduleName.charAt(0).toUpperCase() + moduleName.slice(1)}`;
@@ -1317,12 +1713,14 @@
                 case 'docentes':
                     showTeachersModule();
                     break;
+                case 'aires':
+                    showACModule();
+                    break;
+                case 'luces':
+                    showLightsModule();
+                    break;
                 case 'materias':
                     showSubjectsModule();
-                    break;
-                case 'estudiantes':
-                    // Lógica para el módulo de Estudiantes
-                    console.log("Abriendo módulo de Estudiantes");
                     break;
             }
             
@@ -1334,52 +1732,217 @@
 
         // Mostrar módulo de aulas
         function showClassroomsModule() {
-            welcomeSection.style.display = 'none';
+            hideAllSections();
             classroomsSection.style.display = 'block';
-            scheduleSection.style.display = 'none';
-            teachersSection.style.display = 'none';
-            subjectsSection.style.display = 'none';
             loadClassrooms();
         }
 
         // Mostrar módulo de horarios
         function showScheduleModule() {
-            welcomeSection.style.display = 'none';
-            classroomsSection.style.display = 'none';
+            hideAllSections();
             scheduleSection.style.display = 'block';
-            teachersSection.style.display = 'none';
-            subjectsSection.style.display = 'none';
             loadTrimesters();
         }
 
         // Mostrar módulo de docentes
         function showTeachersModule() {
-            welcomeSection.style.display = 'none';
-            classroomsSection.style.display = 'none';
-            scheduleSection.style.display = 'none';
+            hideAllSections();
             teachersSection.style.display = 'block';
-            subjectsSection.style.display = 'none';
             loadTeachers();
         }
 
         // Mostrar módulo de materias
         function showSubjectsModule() {
-            welcomeSection.style.display = 'none';
-            classroomsSection.style.display = 'none';
-            scheduleSection.style.display = 'none';
-            teachersSection.style.display = 'none';
+            hideAllSections();
             subjectsSection.style.display = 'block';
             loadSubjects();
         }
 
+        // Mostrar módulo de Aires Acondicionados
+        function showACModule() {
+            hideAllSections();
+            acSection.style.display = 'block';
+            loadAirConditioners();
+            loadACHistory();
+        }
+
+        // Mostrar módulo de Luces
+        function showLightsModule() {
+            hideAllSections();
+            lightsSection.style.display = 'block';
+            loadLights();
+        }
+
+        // Función para ocultar todas las secciones
+        function hideAllSections() {
+            const sections = [
+                welcomeSection, classroomsSection, scheduleSection, 
+                teachersSection, subjectsSection, acSection, lightsSection
+            ];
+            sections.forEach(section => {
+                if (section) section.style.display = 'none';
+            });
+        }
+
         // Volver al inicio
         function goBack() {
-            classroomsSection.style.display = 'none';
-            scheduleSection.style.display = 'none';
-            teachersSection.style.display = 'none';
-            subjectsSection.style.display = 'none';
+            hideAllSections();
             welcomeSection.style.display = 'block';
         }
+
+        // Cargar aires acondicionados
+        function loadAirConditioners() {
+            acContainer.innerHTML = '';
+            
+            airConditioners.forEach(ac => {
+                const acCard = document.createElement('div');
+                acCard.className = 'ac-card';
+                
+                const statusIndicator = ac.status === 'online' ? 
+                    '<span class="status-indicator status-online"></span>Operativo' : 
+                    '<span class="status-indicator status-maintenance"></span>En Mantenimiento';
+                
+                acCard.innerHTML = `
+                    <div class="ac-name">Aire Acondicionado - ${ac.classroom}</div>
+                    <div class="ac-status">
+                        ${statusIndicator}
+                    </div>
+                    <div class="ac-info">
+                        <p><strong>Horas de uso total:</strong> ${ac.hoursUsed} horas</p>
+                        <p><strong>Estado:</strong> ${ac.maintenance ? 'Requiere mantenimiento' : 'Funcionando correctamente'}</p>
+                        <p><strong>Último uso:</strong> ${ac.history[ac.history.length - 1].date} por ${ac.history[ac.history.length - 1].teacher}</p>
+                    </div>
+                `;
+                
+                acContainer.appendChild(acCard);
+            });
+        }
+
+        // Cargar historial de aires acondicionados
+        function loadACHistory() {
+            acHistoryContainer.innerHTML = '';
+            
+            // Combinar todos los historiales
+            const allHistory = [];
+            airConditioners.forEach(ac => {
+                ac.history.forEach(record => {
+                    allHistory.push({
+                        ...record,
+                        classroom: ac.classroom
+                    });
+                });
+            });
+            
+            // Ordenar por fecha (más reciente primero)
+            allHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Mostrar los 10 registros más recientes
+            const recentHistory = allHistory.slice(0, 10);
+            
+            recentHistory.forEach(record => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                
+                historyItem.innerHTML = `
+                    <h4>Aula ${record.classroom} - ${record.date}</h4>
+                    <p><strong>Acción:</strong> ${record.action} | <strong>Profesor:</strong> ${record.teacher}</p>
+                    ${record.hours > 0 ? `<p><strong>Duración:</strong> ${record.hours} horas</p>` : ''}
+                `;
+                
+                acHistoryContainer.appendChild(historyItem);
+            });
+        }
+
+        // Cargar controles de luces
+        function loadLights() {
+            lightsContainer.innerHTML = '';
+            
+            lights.forEach(light => {
+                const lightCard = document.createElement('div');
+                lightCard.className = 'light-card';
+                
+                lightCard.innerHTML = `
+                    <div class="light-name">Control de Luces - ${light.classroom}</div>
+                    <div class="light-controls">
+                        <label for="intensity-${light.id}">Intensidad: <span id="value-${light.id}">${light.intensity}</span>%</label>
+                        <input type="range" min="0" max="100" value="${light.intensity}" 
+                               class="intensity-slider" id="intensity-${light.id}"
+                               oninput="updateIntensity(${light.id}, this.value)">
+                        <div class="intensity-value" id="intensity-value-${light.id}">
+                            ${getIntensityLabel(light.intensity)}
+                        </div>
+                    </div>
+                    <div class="connection-status">
+                        <div class="connection-dot ${light.connected ? 'connected' : 'disconnected'}"></div>
+                        <span>${light.connected ? 'Conectado al ESP32' : 'Desconectado'}</span>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <button class="btn btn-small" onclick="sendToESP32(${light.id})">
+                            <i class="fas fa-paper-plane"></i> Enviar a ESP32
+                        </button>
+                        <button class="btn btn-small" onclick="toggleAutomatic(${light.id})" 
+                                style="margin-left: 10px;">
+                            ${light.automatic ? '<i class="fas fa-robot"></i> Automático' : '<i class="fas fa-user"></i> Manual'}
+                        </button>
+                    </div>
+                `;
+                
+                lightsContainer.appendChild(lightCard);
+            });
+        }
+
+        // Actualizar intensidad de luz
+        function updateIntensity(lightId, value) {
+            document.getElementById(`value-${lightId}`).textContent = value;
+            document.getElementById(`intensity-value-${lightId}`).textContent = getIntensityLabel(value);
+            
+            // Actualizar en los datos
+            const light = lights.find(l => l.id === lightId);
+            if (light) {
+                light.intensity = parseInt(value);
+            }
+        }
+
+        // Obtener etiqueta descriptiva para la intensidad
+        function getIntensityLabel(value) {
+            const intensity = parseInt(value);
+            if (intensity === 0) return 'Apagado';
+            if (intensity <= 25) return 'Muy Baja';
+            if (intensity <= 50) return 'Baja';
+            if (intensity <= 75) return 'Media';
+            return 'Alta';
+        }
+
+        // Enviar configuración al ESP32
+        function sendToESP32(lightId) {
+            const light = lights.find(l => l.id === lightId);
+            if (!light) return;
+            
+            // Simular envío al ESP32
+            showNotification(`Enviando configuración a ESP32: Aula ${light.classroom} - Intensidad ${light.intensity}%`);
+            
+            // En una implementación real, aquí harías una petición HTTP al ESP32
+            // fetch(`http://192.168.1.100/light`, {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         classroom: light.classroom,
+            //         intensity: light.intensity
+            //     })
+            // });
+        }
+
+        // Cambiar entre modo automático y manual
+        function toggleAutomatic(lightId) {
+            const light = lights.find(l => l.id === lightId);
+            if (light) {
+                light.automatic = !light.automatic;
+                showNotification(`Modo ${light.automatic ? 'automático' : 'manual'} activado para ${light.classroom}`);
+                loadLights(); // Recargar para mostrar el cambio
+            }
+        }
+
+        // El resto del código existente (para aulas, horarios, docentes, materias) se mantiene igual
+        // ... (loadClassrooms, loadTeachers, loadSubjects, etc.)
 
         // Cargar trimestres
         function loadTrimesters() {
